@@ -55,7 +55,7 @@ class Game extends React.Component {
     }
 
     handleClick(i) {
-        const history = this.state.history.slice(0, this.state.stepNumber + 1);
+        const history = this.state.history.slice();
         const current = history[this.state.stepNumber];
         const squares = current.squares.slice();// clone
         if(calculateWinner(squares) || squares[i]) {
@@ -73,6 +73,7 @@ class Game extends React.Component {
 
     jumpTo(step) {
         this.setState({
+            history: this.state.history.slice(0, step + 1),
             stepNumber: step,
             xIsNext: (step % 2) === 0
         });
